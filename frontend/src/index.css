@@ -1,0 +1,156 @@
+@import url("https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap");
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  font-family: "Inter", system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+  color: #0f172a;
+  background: #f8fafc;
+  font-synthesis: none;
+  text-rendering: optimizeLegibility;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  margin: 0;
+  min-width: 320px;
+  min-height: 100vh;
+}
+
+button,
+input,
+textarea,
+select {
+  font: inherit;
+}
+
+.leaflet-container {
+  width: 100%;
+  height: 100%;
+  font-family: inherit;
+}
+
+.parknest-marker {
+  width: 38px;
+  height: 38px;
+  border-radius: 50%;
+  display: grid;
+  place-items: center;
+  background: #2563eb;
+  border: 3px solid white;
+  box-shadow: 0 5px 15px rgba(37, 99, 235, 0.35);
+  color: white;
+  font-weight: 800;
+}
+
+.user-marker {
+  width: 18px;
+  height: 18px;
+  border-radius: 50%;
+  background: #ef4444;
+  border: 4px solid white;
+  box-shadow: 0 0 0 6px rgba(239, 68, 68, 0.15);
+}
+
+::-webkit-scrollbar {
+  width: 9px;
+}
+
+::-webkit-scrollbar-thumb {
+  background: #cbd5e1;
+  border-radius: 999px;
+}
+/* =========================================================
+   ParkNest global dark theme
+   The existing pages use normal Tailwind light utilities.
+   These overrides make the COMPLETE existing frontend switch
+   when html.dark is enabled, without rewriting every page.
+   ========================================================= */
+html.dark,
+html.dark body {
+  background: #020617;
+  color: #e2e8f0;
+}
+
+.dark .bg-white { background-color: #0f172a !important; }
+.dark .bg-white\/90 { background-color: rgba(15, 23, 42, 0.92) !important; }
+.dark .bg-slate-50 { background-color: #111827 !important; }
+.dark .bg-slate-100 { background-color: #1e293b !important; }
+.dark .bg-slate-200 { background-color: #334155 !important; }
+.dark .bg-slate-300 { background-color: #475569 !important; }
+.dark .bg-slate-700 { background-color: #334155 !important; }
+.dark .bg-slate-900 { background-color: #020617 !important; }
+.dark .bg-slate-950 { background-color: #020617 !important; }
+
+.dark .text-slate-900 { color: #f8fafc !important; }
+.dark .text-slate-800 { color: #f1f5f9 !important; }
+.dark .text-slate-700 { color: #cbd5e1 !important; }
+.dark .text-slate-600 { color: #cbd5e1 !important; }
+.dark .text-slate-500 { color: #94a3b8 !important; }
+.dark .text-slate-400 { color: #94a3b8 !important; }
+
+.dark .border-slate-50 { border-color: #1e293b !important; }
+.dark .border-slate-100 { border-color: #334155 !important; }
+.dark .border-slate-200 { border-color: #334155 !important; }
+.dark .border-slate-200\/80 { border-color: rgba(51, 65, 85, 0.85) !important; }
+.dark .border-slate-300 { border-color: #475569 !important; }
+
+.dark .bg-blue-50 { background-color: rgba(37, 99, 235, 0.14) !important; }
+.dark .bg-green-50 { background-color: rgba(34, 197, 94, 0.12) !important; }
+.dark .bg-red-50 { background-color: rgba(239, 68, 68, 0.12) !important; }
+.dark .border-blue-200 { border-color: rgba(96, 165, 250, 0.35) !important; }
+.dark .border-green-200 { border-color: rgba(74, 222, 128, 0.3) !important; }
+.dark .border-red-100,
+.dark .border-red-200 { border-color: rgba(248, 113, 113, 0.3) !important; }
+
+/* Inputs, selects and textareas across every page */
+.dark input,
+.dark textarea,
+.dark select {
+  background-color: #0f172a !important;
+  color: #f8fafc !important;
+  border-color: #334155 !important;
+}
+
+.dark input::placeholder,
+.dark textarea::placeholder {
+  color: #64748b !important;
+}
+
+/* Buttons/cards that were explicitly white in the original UI */
+.dark button.bg-white,
+.dark a.bg-white {
+  background-color: #1e293b !important;
+  color: #f8fafc !important;
+}
+
+/* Leaflet UI also has its own white surfaces */
+.dark .leaflet-control,
+.dark .leaflet-bar a,
+.dark .leaflet-popup-content-wrapper,
+.dark .leaflet-popup-tip {
+  background: #0f172a !important;
+  color: #e2e8f0 !important;
+  border-color: #334155 !important;
+}
+
+.dark .leaflet-bar a {
+  color: #e2e8f0 !important;
+}
+
+.dark .leaflet-container {
+  background: #020617;
+}
+
+.dark ::-webkit-scrollbar-thumb {
+  background: #475569;
+}
