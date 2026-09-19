@@ -31,6 +31,29 @@ export default function Booking() {
     setPaymentOpen(true);
   };
 
+  const quickSlots = [
+    ["09:00 AM", "11:00 AM"],
+    ["11:30 AM", "01:30 PM"],
+    ["02:00 PM", "04:00 PM"],
+    ["05:00 PM", "07:00 PM"],
+  ];
+
+  const applyQuickSlot = (startLabel, endLabel) => {
+    const base = new Date();
+    base.setDate(base.getDate() + 1);
+    const toLocalValue = (label) => {
+      const [time, meridiem] = label.split(" ");
+      let [hours, minutes] = time.split(":").map(Number);
+      if (meridiem === "PM" && hours !== 12) hours += 12;
+      if (meridiem === "AM" && hours === 12) hours = 0;
+      const d = new Date(base);
+      d.setHours(hours, minutes, 0, 0);
+      const pad = (v) => String(v).padStart(2, "0");
+      return `${d.getFullYear()}-${pad(d.getMonth()+1)}-${pad(d.getDate())}T${pad(d.getHours())}:${pad(d.getMinutes())}`;
+    };
+    setForm({ ...form, startTime: toLocalValue(startLabel), endTime: toLocalValue(endLabel) });
+  };
+
   const confirmBooking = async () => {
     setBusy(true);
     try {
@@ -55,9 +78,20 @@ export default function Booking() {
             <h1 className="mt-2 text-3xl font-extrabold text-slate-900">{space.name}</h1>
             <p className="mt-2 text-sm text-slate-500">{space.address}</p>
             <Alert message={error} />
-            <div className="mt-7 grid gap-5 sm:grid-cols-2">
-              <label className="block text-sm font-semibold text-slate-700">Start time<input required type="datetime-local" className="mt-2 w-full rounded-xl border border-slate-200 px-3 py-3 text-sm outline-none focus:border-blue-500" value={form.startTime} onChange={(e) => setForm({ ...form, startTime: e.target.value })} /></label>
-              <label className="block text-sm font-semibold text-slate-700">End time<input required type="datetime-local" className="mt-2 w-full rounded-xl border border-slate-200 px-3 py-3 text-sm outline-none focus:border-blue-500" value={form.endTime} onChange={(e) => setForm({ ...form, endTime: e.target.value })} /></label>
+            <div className="mt-7">
+              <p className="text-sm font-semibold text-slate-700">Quick time slots</p>
+              <p className="mt-1 text-xs text-slate-500">Choose a sample slot or enter your own date and time below.</p>
+              <div className="mt-3 grid grid-cols-2 gap-2 sm:grid-cols-4">
+                {quickSlots.map(([start, end]) => (
+                  <button type="button" key={start} onClick={() => applyQuickSlot(start, end)} className="rounded-xl border border-slate-200 bg-slate-50 px-3 py-3 text-left text-xs font-semibold text-slate-700 transition hover:border-blue-300 hover:bg-blue-50 hover:text-blue-700">
+                    <span className="block">{start}</span><span className="mt-1 block text-slate-400">to {end}</span>
+                  </button>
+                ))}
+              </div>
+            </div>
+            <div className="mt-5 grid gap-5 sm:grid-cols-2">
+              <label className="block text-sm font-semibold text-slate-700">Start time<input required type="datetime-local" aria-label="Start time" className="mt-2 w-full rounded-xl border border-slate-200 px-3 py-3 text-sm outline-none focus:border-blue-500" value={form.startTime} onChange={(e) => setForm({ ...form, startTime: e.target.value })} /></label>
+              <label className="block text-sm font-semibold text-slate-700">End time<input required type="datetime-local" aria-label="End time" className="mt-2 w-full rounded-xl border border-slate-200 px-3 py-3 text-sm outline-none focus:border-blue-500" value={form.endTime} onChange={(e) => setForm({ ...form, endTime: e.target.value })} /></label>
             </div>
             <label className="mt-5 block text-sm font-semibold text-slate-700">Vehicle number<input required placeholder="e.g. DL 01 AB 1234" className="mt-2 w-full rounded-xl border border-slate-200 px-4 py-3 outline-none focus:border-blue-500 focus:ring-4 focus:ring-blue-50" value={form.vehicleNumber} onChange={(e) => setForm({ ...form, vehicleNumber: e.target.value.toUpperCase() })} /></label>
             <button className="mt-7 w-full rounded-xl bg-blue-600 py-3.5 font-bold text-white hover:bg-blue-700">Continue to Payment</button>

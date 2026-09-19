@@ -30,7 +30,7 @@ export default function ParkingDetails() {
           <div className="bg-slate-950 p-8 text-white lg:col-span-2 lg:p-10">
             <span className={`inline-flex rounded-full px-3 py-1 text-xs font-semibold ${space.availableSpots > 0 ? "bg-green-500/15 text-green-300" : "bg-red-500/15 text-red-300"}`}>{space.availableSpots > 0 ? "Available now" : "Currently full"}</span>
             <h1 className="mt-5 text-3xl font-extrabold">{space.name}</h1>
-            <p className="mt-3 text-sm leading-6 text-slate-300">{space.address}</p>
+            <p className="mt-3 text-sm leading-6 text-slate-300">{space.address}</p>{space.demo && <span className="mt-4 inline-flex rounded-full border border-blue-400/30 bg-blue-400/10 px-3 py-1 text-xs font-semibold text-blue-200">Demo preview</span>}
             <div className="mt-8 grid grid-cols-2 gap-3">
               <div className="rounded-xl bg-white/5 p-4"><p className="text-xs text-slate-400">Price</p><p className="mt-1 text-xl font-bold">₹{space.price}/hr</p></div>
               <div className="rounded-xl bg-white/5 p-4"><p className="text-xs text-slate-400">Available</p><p className="mt-1 text-xl font-bold">{space.availableSpots}</p></div>
@@ -43,7 +43,7 @@ export default function ParkingDetails() {
               <div className="rounded-xl bg-slate-50 p-4"><p className="text-xs text-slate-400">Total capacity</p><p className="mt-1 font-bold text-slate-800">{space.totalSpots} spots</p></div>
               <div className="rounded-xl bg-slate-50 p-4"><p className="text-xs text-slate-400">Availability</p><p className="mt-1 font-bold text-slate-800">{space.isAvailable ? "Open for booking" : "Not available"}</p></div>
             </div>
-            <button disabled={!space.isAvailable || space.availableSpots <= 0} onClick={() => navigate(`/parking/${id}/book`, { state: { space } })} className="mt-8 w-full rounded-xl bg-blue-600 py-3.5 font-bold text-white hover:bg-blue-700 disabled:cursor-not-allowed disabled:bg-slate-300">Continue to Booking</button>
+            <button disabled={space.demo || !space.isAvailable || space.availableSpots <= 0} onClick={() => navigate(`/parking/${id}/book`, { state: { space } })} className="mt-8 w-full rounded-xl bg-blue-600 py-3.5 font-bold text-white hover:bg-blue-700 disabled:cursor-not-allowed disabled:bg-slate-300">{space.demo ? "Preview only" : "Continue to Booking"}</button>
           </div>
         </div>
       </div>

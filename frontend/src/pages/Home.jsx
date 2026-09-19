@@ -43,7 +43,7 @@ export default function Home() {
               <div className="overflow-hidden rounded-2xl bg-white p-4">
                 <div className="flex items-center justify-between border-b pb-4">
                   <div><p className="text-xs text-slate-400">Nearby</p><p className="font-bold text-slate-900">Parking locations</p></div>
-                  <span className="rounded-full bg-green-50 px-3 py-1 text-xs font-semibold text-green-700">{spaces.length || 0} locations</span>
+                  <span className="rounded-full bg-green-50 px-3 py-1 text-xs font-semibold text-green-700">{spaces.length || 3} locations</span>
                 </div>
                 <div className="mt-4 space-y-3">
                   {(spaces.slice(0, 3).length ? spaces.slice(0, 3) : [

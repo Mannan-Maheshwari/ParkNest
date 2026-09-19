@@ -2,6 +2,7 @@ import { useState } from "react";
 import { Link, NavLink, useNavigate } from "react-router-dom";
 import { useAuth } from "../context/AuthContext";
 import { useTheme } from "../context/ThemeContext";
+import ParkNestLogo from "./ParkNestLogo";
 
 export default function Navbar() {
   const [open, setOpen] = useState(false);
@@ -24,7 +25,7 @@ export default function Navbar() {
     <header className="sticky top-0 z-50 border-b border-slate-200/80 bg-white/90 backdrop-blur">
       <div className="mx-auto flex h-16 max-w-7xl items-center justify-between px-4 sm:px-6 lg:px-8">
         <Link to="/" onClick={close} className="flex items-center gap-2.5">
-          <span className="grid h-9 w-9 place-items-center rounded-xl bg-blue-600 font-extrabold text-white shadow-sm">P</span>
+          <ParkNestLogo size={40} />
           <span className="text-xl font-extrabold tracking-tight text-slate-900">
             Park<span className="text-blue-600">Nest</span>
           </span>
