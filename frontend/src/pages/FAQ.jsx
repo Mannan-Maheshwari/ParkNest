@@ -1,10 +1,9 @@
 const faqs = [
   ["How do I book parking?", "Sign in as a driver, open Find Parking, choose an available location, select your time and vehicle number, and confirm the simulated checkout."],
-  ["Can I cancel a booking?", "Yes. Confirmed bookings can be cancelled from your dashboard, subject to the backend booking rules."],
-  ["Is the payment real?", "No. The redesigned frontend includes a simulated payment confirmation. The existing backend creates the actual booking record but no real payment gateway is connected."],
+  ["Can I cancel a booking?", "Yes. Confirmed bookings can be cancelled from your dashboard, subject to the booking rules."],
   ["How can I list my parking space?", "Create a Parking Owner account. The owner dashboard lets you add, edit, activate or deactivate your parking spaces."],
-  ["What information is required for a parking space?", "The current backend expects a name, address, coordinates, price, description and total number of spots."],
-  ["What happens when a booking is created?", "The existing backend creates the booking, calculates the total price from duration and hourly rate, and decreases available spots."]
+  ["What information is required for a parking space?", "The system expects a name, address, coordinates, price, description and total number of spots."],
+  ["What happens when a booking is created?", "The system will reserve the parking space for the specified time and send a confirmation to both the driver and the owner."],
 ];
 
 export default function FAQ() {
